@@ -1,0 +1,11 @@
+{
+  "username": "{{check_user.username}}",
+  "firstname": "{{check_user.first_name}}",
+  "lastname": "{{check_user.last_name}}",
+  "email": "{{check_user.email}}",
+  "gender": "{{check_myuser.get_gender_display}}",
+  "age": "{{check_myuser.age}}",
+  "food": "{{check_myuser.fav_foods}}",
+  "id": "{{check_myuser.id}}",
+  "hasphoto": "{{hasphoto}}"
+}

@@ -1,0 +1,243 @@
+{% extends "foodieking/create_restaurant.html" %}
+
+{% block mainbody %}
+    <div class="row movebottom4 moveright1">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <div class="create-title">
+                <h2>Edit your restaurant</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row movebottom marginbottom movebottom2">
+        <div class="col-md-2 col-lg-2 col-xs-2 col-sm-2">
+        </div>
+        <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+            <div class="red-color movetop-text3">
+                {% for error in form.non_field_errors %}
+                    <h4 class="moveright-text5">{{ error }}</h4>
+                {% endfor %}
+            </div>
+            <form enctype="multipart/form-data" class="form-horizontal" action="{% url 'edit_res' restaurant.id %}"
+                  method="post">
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form.res_name }}</td>
+                                <td class="red-color">{{ form.res_name.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form.location }}</td>
+                                <td class="red-color">{{ form.locations.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form.coordinate_x }}</td>
+                                <td class="red-color">{{ form.coordinate_x.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form.coordinate_y }}</td>
+                                <td class="red-color">{{ form.coordiante_y.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+
+                            <tr>
+                                <td>{{ form.scale }}</td>
+                                <td class="red-color">{{ form.scale.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form.type_res }}</td>
+                                <td class="red-color">{{ form.type_res.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+
+                            <tr>
+                                <td>{{ form.big_table }}</td>
+                                <td class="red-color">{{ form.big_table.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form.mid_table }}</td>
+                                <td class="red-color">{{ form.mid_table.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form.small_table }}</td>
+                                <td class="red-color">{{ form.small_table.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form.phone }}</td>
+                                <td class="red-color">{{ form.phone.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form.email }}</td>
+                                <td class="red-color">{{ form.email.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form.home_page }}</td>
+                                <td class="red-color">{{ form.home_page.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form.description }}</td>
+                                <td class="red-color">{{ form.description.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form2.week_start }}</td>
+                                <td class="red-color">{{ form2.week_start.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form2.week_end }}</td>
+                                <td class="red-color">{{ form2.week_end.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form2.sat_start }}</td>
+                                <td class="red-color">{{ form2.sat_start.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form2.sat_end }}</td>
+                                <td class="red-color">{{ form2.sat_end.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form2.sun_start }}</td>
+                                <td class="red-color">{{ form2.sun_start.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <table>
+                            <tr>
+                                <td>{{ form2.sun_end }}</td>
+                                <td class="red-color">{{ form2.sun_end.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <input class="btn btn-default regis-submit" type="submit" value="Update"/>
+                    </div>
+                </div>
+                {% for field in form.hidden_fields %}
+                    {{ field }}
+                {% endfor %}
+                {% csrf_token %}
+            </form>
+        </div>
+
+        <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4 mapcontainer">
+            <div id="restaurantMap" style="width:100%;height:100%"></div>
+        </div>
+    </div>
+{% endblock %}

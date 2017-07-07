@@ -1,0 +1,10 @@
+{
+  "event_name": "{{event_name}}",
+  "restaurant_name": "{{restaurant_name}}",
+  "originator": "{{originator}}",
+  "joined": "{{joined}}",
+  "restaurant_id":"{{restaurant_id}}",
+  "description":"{{description}}",
+  "number":"{{number}}",
+  "time":"{{time}}"
+}

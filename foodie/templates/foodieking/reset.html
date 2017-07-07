@@ -1,0 +1,78 @@
+{% extends "foodieking/base_out.html" %}
+{% block title %}
+{% endblock %}
+{% block mainbody %}
+    <div class="row movebottom4 moveright2">
+          <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+          </div>
+          <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+              <div class="create-title">
+                  <h2 class="moveright_forget">Reset your password</h2>
+              </div>
+          </div>
+          <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+          </div>
+    </div>
+
+     <div class="row movebottom2">
+          <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+          </div>
+          <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
+            <div class="red-color movetop-text3">
+            {% for error in form.non_field_errors %}
+                <h4 class="moveright3">{{error}}</h4>
+            {% endfor %}
+            </div>
+        </div>
+     </div>
+
+    <div class="row movebottom2">
+        <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+        </div>
+        <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+             <form enctype="multipart/form-data" class="form-horizontal" action="{% url 'reset' name token %}" method="post">
+
+                <div class="form-group">
+                    <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1">
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <table>
+                        <tr>
+                          <td>{{ form.newpassword1 }}</td>
+                          <td class="red-color">{{ form.newpassword1.errors }}</td>
+                        </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1">
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <table>
+                        <tr>
+                          <td>{{ form.newpassword2 }}</td>
+                          <td class="red-color">{{ form.newpassword2.errors }}</td>
+                        </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1">
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+
+                        <input class="btn btn-default reset" type="submit" value="Reset password">
+                    </div>
+                </div>
+                {% for field in form.hidden_fields %}
+                {{field}}
+                {% endfor %}
+                {% csrf_token %}
+            </form>
+        </div>
+        <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+        </div>
+    </div>
+{% endblock %}

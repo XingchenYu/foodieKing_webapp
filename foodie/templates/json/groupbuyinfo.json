@@ -1,0 +1,9 @@
+{
+  "name": "{{name}}",
+  "resName": "{{resName}}",
+  "start": "{{start}}",
+  "end": "{{end}}",
+  "description": "{{description}}",
+  "joined": "{{joined}}",
+  "res_id": "{{res_id}}"
+}

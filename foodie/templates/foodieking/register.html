@@ -1,0 +1,115 @@
+{% extends "foodieking/base_out.html" %}
+{% block mainbody %}
+    <div id="register">
+        <div class="row">
+            <div class="col-md-5 col-lg-5 col-xs-5 col-sm-5">
+            </div>
+            <div class="col-md-6 col-lg-6 col-xs-6 col-sm-6">
+                <div class="red-color move-error moveleft-reerror">
+                    {% for error in form_reg.non_field_errors %}
+                    <h4>{{error}}</h4>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row movebottom marginbottom">
+        <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+        </div>
+        <div class="col-md-5 col-lg-5 col-xs-5 col-sm-5">
+
+             <form class="form-horizontal" action="{% url 'register' %}" method="post">
+                <div class="form-group">
+                    <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1">
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <table>
+                            <tr>
+                                <td>{{ form_reg.username }}</td>
+                                <td class="red-color">{{ form_reg.username.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1">
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <table>
+                            <tr>
+                                <td>{{ form_reg.first_name }}</td>
+                                <td class="red-color">{{ form_reg.first_name.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1">
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <table>
+                            <tr>
+                                <td>{{ form_reg.last_name }}</td>
+                                <td class="red-color">{{ form_reg.last_name.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1">
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <table>
+                            <tr>
+                                <td>{{ form_reg.email }}</td>
+                                <td class="red-color">{{ form_reg.email.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1">
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <table>
+                            <tr>
+                                <td>{{ form_reg.password }}</td>
+                                <td class="red-color">{{ form_reg.password.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1">
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <table>
+                            <tr>
+                                <td>{{ form_reg.cpassword }}</td>
+                                <td class="red-color">{{ form_reg.cpassword.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1">
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <input class="btn btn-default regis-submit" type="submit" value="Submit"/>
+                    </div>
+                </div>
+                {% for field in form_reg.hidden_fields %}
+                {{field}}
+                {% endfor %}
+                {% csrf_token %}
+            </form>
+        </div>
+        <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+        </div>
+        </div>
+    </div>
+{% endblock %}

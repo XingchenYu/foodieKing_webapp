@@ -1,0 +1,89 @@
+.manage_back{
+    background:url(../../static/img/header-bg.jpg) no-repeat center fixed;
+}
+.white_color{
+    color:white;
+}
+.red-color{
+    color:red;
+}
+.bar-color{
+    color:#fed136;
+}
+.color_gray{
+    background-color: #555;
+}
+.input-username{
+    width:250px;
+    margin-left:20px;
+    opacity: 0.9;
+}
+.regis-submit{
+    border:#0099FF ;
+    background-color:#0099FF;
+    margin-left:183px;
+    margin-top:20px;
+    color:white;
+}
+.right_float{
+    float: right;
+}
+.movedown_resedit{
+    margin-top: 50px;
+}
+.round-border {
+    border-radius: 500px;
+}
+.movedown-order{
+    position:relative;
+    top:10px;
+}
+.moveleft-order{
+    position:relative;
+    right:25px;
+}
+.moveleft-order2{
+    position:relative;
+    right:30px;
+}
+#order-table > td{
+    width:300px;
+    height: 50px;
+    position:relative;
+    left:20px;
+}
+.res_table{
+    font-size: 20px;
+    /*position: relative;*/
+    /*left:150px;*/
+}
+.text-center {text-align:center}
+.edit-button{
+    font-size:20px;
+    border:#3399FF;
+    background-color:#3399FF;
+    color:white;
+    width:100px;
+    height:30px;
+    margin-top:30px;
+
+    cursor: pointer;
+    vertical-align: middle;
+    position: relative;
+    display: inline-block;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
+    -webkit-transition: all .15s ease;
+    -moz-transition: all .15s ease;
+    -o-transition: all .15s ease;
+    transition: all .15s ease;
+    -webkit-border-radius: 2px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 2px;
+    -moz-background-clip: padding;
+    border-radius: 4px;
+    background-clip: padding-box;
+    text-align: center;
+}
+

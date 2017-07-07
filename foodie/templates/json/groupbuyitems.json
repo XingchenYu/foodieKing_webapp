@@ -1,0 +1,6 @@
+{"items":[
+{% for item in items %}
+{%spaceless%}{% include 'json/groupbuyitem.json' %}{%endspaceless%}
+{% if not forloop.last %}, {% endif %}
+{% endfor %}]
+}

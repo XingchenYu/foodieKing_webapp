@@ -1,0 +1,4 @@
+{"id":"{{comment.id}}",
+"text":"{{comment.text}}",
+"com_user":"{{comment.com_user}}",
+"html":"{{comment.html|safe}}"}

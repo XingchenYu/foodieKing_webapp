@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FoodieKing</title>
+    <link rel="icon" href="../../static/images/burger.png">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Theme CSS -->
+    <link href="../../static/css/agency.min.css" rel="stylesheet">
+    <link href="../../static/css/restaurant_page_user.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../../static/css/res.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/menu.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/special.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/useractivity.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/last_revise.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+<!-- Navigation -->
+<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="{% url 'main' %}">FoodieKing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#page-top">Top page</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#services">Introduction</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#portfolio">Activities</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#team">Team</a>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">
+                        Restaurant List <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu color_gray">
+                        {% for res in restaurants %}
+                            {% if res.user == user %}
+                                <li><a href="{% url 'manage' %}">{{ res.res_name }}</a></li>
+                            {% else %}
+                                <li><a href="{% url 'restaurant' res.id %}">{{ res.res_name }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="actives"><a href="{% url 'logout' %}">Log Out</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="intro-text">
+            <div class="intro-lead-in">Welcome To <span class="yellowname" id="resName">{{ restaurant.res_name }}</span>!
+            </div>
+            <div class="intro-heading">Order and join in!</div>
+            <a href="#services" class="page-scroll btn btn-xl">Know More</a>
+        </div>
+    </div>
+</header>
+
+<!-- Introduction Section -->
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading" id="restaurant_name">{{ restaurant.res_name }}</h2>
+                <h3 class="section-subheading text-muted">{{ restaurant.get_type_res_display }} restaurant
+                    at {{ restaurant.location }}. {{ restaurant.description }}</h3>
+
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                    </span>
+                <h4 class="service-heading">Volume</h4>
+                <p class="text-muted">We allow about {{ restaurant.scale }} people to eat in our restaurant.</p>
+                <p class="text-muted">We have {{ restaurant.big_table }} tables for more than 8 people.</p>
+                <p class="text-muted">We have {{ restaurant.mid_table }} tables for about 4 people.</p>
+                <p class="text-muted">We have {{ restaurant.small_table }} tables for 2 people.</p>
+            </div>
+            <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                    </span>
+                <h4 class="service-heading">Business Hours</h4>
+                <table class="table restaurant-time text-muted">
+                    <tbody>
+                    <tr>
+                        <td>Weekday</td>
+                        <td>{{ timetable.week_start }} - {{ timetable.week_end }} </td>
+                    </tr>
+                    <tr>
+                        <td>Saturday</td>
+                        <td>{{ timetable.sat_start }} - {{ timetable.sat_end }} </td>
+                    </tr>
+                    <tr>
+                        <td>Sunday</td>
+                        <td>{{ timetable.sun_start }} - {{ timetable.sun_end }} </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                    </span>
+                <h4 class="service-heading">Information</h4>
+                <p class="text-muted">Phone number: {{ restaurant.phone }}</p>
+                <p class="text-muted">Email: {{ restaurant.email }}</p>
+                <p class="text-muted">Home page: <a target="_blank"
+                                                    href="http://{{ restaurant.home_page }}">{{ restaurant.home_page }}</a>
+                </p>
+                <p class="text-muted">Location: {{ restaurant.location }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Grid Section -->
+<section id="portfolio" class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Activities</h2>
+                <h3 class="section-subheading text-muted">Order dishes, join events, make comments.</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <i class="fa fa-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="../../static/img/portfolio/menu.jpg" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    <h4>Menu</h4>
+                    <p class="text-muted">Order online</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <i class="fa fa-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="../../static/img/portfolio/groupbuy.jpg" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    <h4>Group Buy</h4>
+                    <p class="text-muted">Save your money</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <i class="fa fa-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="../../static/img/portfolio/specialty.jpg" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    <h4>Specialty</h4>
+                    <p class="text-muted">Chef recommended dishes</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <i class="fa fa-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="../../static/img/portfolio/usercomment.jpg" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    <h4>Customer Comment</h4>
+                    <p class="text-muted">Show others' experiences</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <i class="fa fa-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="../../static/img/portfolio/userevent.jpg" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    <h4>Customer Appointment</h4>
+                    <p class="text-muted">Choose one to join</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <i class="fa fa-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="../../static/img/portfolio/dream.jpg" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    <h4>To Be Expected</h4>
+                    <p class="text-muted">Coming soon</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section id="team">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Our Amazing Team</h2>
+                <h3 class="section-subheading text-muted">We are Team FoodieKing. We are students from CMU.</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="team-member">
+                    <img src="../../static/img/team/xingchen.jpg" class="img-responsive img-circle" alt="">
+                    <h4>Xingchen Yu</h4>
+                    <p class="text-muted">Robotics</p>
+                    <ul class="list-inline social-buttons">
+                        <li><a target="_blank" href="https://twitter.com/yuxingchen_star"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a target="_blank" href="https://www.facebook.com/xingchenstar"><i
+                                class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a target="_blank" href="https://www.linkedin.com/in/xingcheny"><i
+                                class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="team-member">
+                    <img src="../../static/img/team/Yuzhang2.jpg" class="img-responsive img-circle" alt="">
+                    <h4>Yuzhang Wu</h4>
+                    <p class="text-muted">Robotics</p>
+                    <ul class="list-inline social-buttons">
+                        <li><a target="_blank" href="https://twitter.com/wuyuzhang23"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a target="_blank" href="https://www.facebook.com/profile.php?id=100007826111497"><i
+                                class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a target="_blank" href="https://www.linkedin.com/in/yuzhang-wu"><i
+                                class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="team-member">
+                    <img src="../../static/img/team/yuchen.jpg" class="img-responsive img-circle" alt="">
+                    <h4>Yuchen Deng</h4>
+                    <p class="text-muted">Electrical and Computer Engineering</p>
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a target="_blank" href="https://www.facebook.com/profile.php?id=100010045113785"><i
+                                class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a target="_blank" href="https://www.linkedin.com/in/yuchendeng"><i
+                                class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <p class="large text-muted">Team 203 FoodieKing</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <span class="copyright">Copyright &copy; FoodieKing 2016</span>
+            </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Portfolio Modals -->
+<!-- Use the modals below to showcase details about your portfolio projects! -->
+{% load listutil %}
+
+<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-body" id="modal-menu">
+                            <!-- Project Details Go Here -->
+                            <div class="col-lg-12">
+                                <h2>Menu</h2>
+                                <p class="item-intro text-muted">Add some description about your menu.</p>
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                {% for dish in dishes|partition:"2"|last %}
+                                                    <div class="service1">
+                                                        <div class="icon-holder1">
+                                                            <img src="{% url 'getdishphoto' dish.dish_name %}"
+                                                                 class="img-responsive icon" alt="portrait">
+                                                        </div>
+                                                        <h4 class="heading1"
+                                                            id="dishname_{{ dish.id }}">{{ dish.dish_name }}</h4>
+                                                        <p class="description1"
+                                                           id="dishsource_{{ dish.id }}">{{ dish.source }}</p>
+                                                        <p class="description1" id="dishprice_{{ dish.id }}">
+                                                            $ {{ dish.price }}</p>
+                                                        <button type="button"
+                                                                class="btn btn-default addbtn description1"
+                                                                id="{{ dish.id }}">Add
+                                                        </button>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="col-lg-6">
+                                                {% for dish in dishes|partition:"2"|first %}
+                                                    <div class="service1">
+                                                        <div class="icon-holder1">
+                                                            <img src="{% url 'getdishphoto' dish.dish_name %}"
+                                                                 class="img-responsive icon" alt="portrait">
+                                                        </div>
+                                                        <h4 class="heading1"
+                                                            id="dishname_{{ dish.id }}">{{ dish.dish_name }}</h4>
+                                                        <p class="description1"
+                                                           id="dishsource_{{ dish.id }}">{{ dish.source }}</p>
+                                                        <p class="description1" id="dishprice_{{ dish.id }}">
+                                                            $ {{ dish.price }}</p>
+                                                        <button type="button"
+                                                                class="btn btn-default addbtn description1"
+                                                                id="{{ dish.id }}">Add
+                                                        </button>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class='dishheader'>
+                                            <h4> Order List</h4>
+                                        </div>
+                                        <table class="table dishtable">
+                                            <tbody id="dishlist"></tbody>
+                                        </table>
+                                        <div>
+                                            <label for="totalsum">Total Sum:</label>
+                                            <span id="totalsum" class="totalsum">$ 0</span>
+                                        </div>
+                                        <br>
+                                        <div>
+                                            <button type="button" class="btn btn-default orderbtn" id="order">Order
+                                            </button>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <h4> Your Orders</h4>
+                                        </div>
+                                        <div>
+                                            <ul id="myorder" class="myorder">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Portfolio Modal 2 -->
+<div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Group Buy</h2>
+                            <p class="item-intro text-muted">Save your money.</p>
+                            {% for group in groups %}
+                                <div class="col-md-8 col-lg-offset-2">
+                                    <div class="intro-table intro-table-hover">
+                                        <h3 class="white heading hide-hover movedown">{{ group.name }}</h3>
+                                        <div class="bottom">
+                                            <h4 class="white heading small-heading no-margin regular">
+                                                Join {{ group.time_start }}</h4>
+                                            <h4 class="white heading small-heading no-margin regular"><span class="red"
+                                                                                                            id="membercount">{{ group.members.count }}</span>
+                                                people have joined!</h4>
+                                            <h5 class="white heading">{{ group.description }}</h5>
+                                            {% if user in group.members.all %}
+                                                <button type="button" id="join_{{ group.id }}"
+                                                        class="btnn btn-white-fill expand joinbtn">Quit
+                                                </button>
+                                            {% else %}
+                                                <button type="button" id="join_{{ group.id }}"
+                                                        class="btnn btn-white-fill expand joinbtn">Join
+                                                </button>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!--    <button type="button" class="btn btn-primary movedown" data-dismiss="modal"><i
+                                   class="fa fa-times"></i> Close Project
+                           </button> -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Portfolio Modal 3 -->
+<div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2>Specialty</h2>
+                            <p class="item-intro text-muted">Chef recommended dishes.</p>
+                            <div class="row moverightspe">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            {% for dish in specialdishes|partition:"2"|last %}
+                                                <div class="service">
+                                                    <div class="icon-holder">
+                                                        <img src="{% url 'getdishphoto' dish.dish_name %}"
+                                                             class="img-responsive icon" alt="portrait">
+                                                    </div>
+                                                    <h4 class="heading"
+                                                        id="dishname_{{ dish.id }}">{{ dish.dish_name }}</h4>
+                                                    <p class="description"
+                                                       id="dishsource_{{ dish.id }}">{{ dish.source }}</p>
+                                                    <p class="description" id="dishprice_{{ dish.id }}">
+                                                        $ {{ dish.price }}</p>
+
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="col-lg-6">
+                                            {% for dish in specialdishes|partition:"2"|first %}
+                                                <div class="service">
+                                                    <div class="icon-holder">
+                                                        <img src="{% url 'getdishphoto' dish.dish_name %}"
+                                                             class="img-responsive icon" alt="portrait">
+                                                    </div>
+                                                    <h4 class="heading"
+                                                        id="dishname_{{ dish.id }}">{{ dish.dish_name }}</h4>
+                                                    <p class="description"
+                                                       id="dishsource_{{ dish.id }}">{{ dish.source }}</p>
+                                                    <p class="description" id="dishprice_{{ dish.id }}">
+                                                        $ {{ dish.price }}</p>
+
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--       <button type="button" class="btn btn-primary" data-dismiss="modal"><i
+                                          class="fa fa-times"></i> Close Project
+                                  </button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio Modal 4 -->
+<div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Comments of costumers</h2>
+                                                <p class="item-intro text-muted">Manager of this restaurant: {{ restaurant.user.username }}</p>
+
+                            <!-- Project Details Go Here -->
+                            {#                                 <div class="col-md-6">#}
+                            <div class="row">
+                                <!-- left posts-->
+
+
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- post state form -->
+                                            <div class="box profile-info n-border-top">
+                                                <form enctype="multipart/form-data" class="form-horizontal"
+                                                      id="postForm">
+                                                    <!--
+                                                    <textarea
+                                                            id="content_text"
+                                                            class="form-control input-lg-restaurant-user p-text-area"
+                                                            rows="2"
+                                                            placeholder="Whats in your mind about our restaurant?"></textarea>-->
+                                                    <input type="hidden" name="resName"
+                                                           value="{{ restaurant.res_name }}">
+                                                    <input type="hidden" name="user" id="curUsername"
+                                                           value="{{ cur_myuser.user }}">
+                                                    <div class="box-footer box-form">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-12">
+                                                                {{ postform.blog }}
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <div class="col-sm-4">
+                                                                {{ postform.photo }}
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <input type="submit" value="Post" id="addPostBtn" class="btn btn-primary post_right">
+                                                        </div>
+
+                                                    </div>
+                                                    {% csrf_token %}
+
+                                                </form>
+                                            </div><!-- end post state form -->
+
+                                            <!--   posts -->
+
+
+                                            <div class="" id="postcontent">
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                                <!--  <button type="button" class="btn btn-primary" data-dismiss="modal"><i
+                                         class="fa fa-times"></i> Close Project
+                                 </button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio Modal 5 -->
+<div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2>User Activity</h2>
+                            <p class="item-intro text-muted">Activities launched by users.</p>
+
+                            <div class="row moverightspe">
+                                <div class="col-lg-12">
+                                    <div class="row" id="userEventList">
+                                        <!-- <div class="col-lg-6" > -->
+                                        {% for event in mealevents|partition:"2"|last %}
+                                            <div class="col-lg-6" id="res_event_{{ event.id }}">
+                                                <div class="service2">
+                                                    <div class="icon-holder2">
+                                                        <h3>{{ event.event_name }}</h3>
+                                                    </div>
+                                                    <h4 class="heading2">{{ event.description }}</h4>
+
+                                                    <div class="heading2">
+
+                                                        {% if event.originator.MAIN.photo %}
+
+                                                            <img class="movedownim round-borderim"
+                                                                 src="{% url 'photo' event.originator.id %}"
+                                                                 alt="{{ user.first_name }} {{ user.last_name }}"
+                                                                 height="40" width="40"/>
+                                                        {% endif %}
+                                                        <p id="res_originatorname_{{ event.id }}">{{ event.originator.username }}</p>
+
+                                                    </div>
+                                                    <p class="description2">
+
+                                                        {{ event.time_eating }}<br>Need {{ event.numbers }} people</p>
+                                                    <!-- <button type="button" class="btn btn-default addbtn description2" >Join</button> -->
+                                                    {% if user in event.members.all %}
+                                                        <button type="button"
+                                                                class="btn btn-default joineventbtn description2"
+                                                                id="res_joineventbtn_{{ event.id }}">Quit
+                                                        </button>
+                                                    {% else %}
+                                                        <button type="button"
+                                                                class="btn btn-default joineventbtn description2"
+                                                                id="res_joineventbtn_{{ event.id }}">Join
+                                                        </button>
+                                                    {% endif %}
+
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                        <!-- </div> -->
+
+                                        <!-- <div class="col-lg-6" > -->
+                                        {% for event in mealevents|partition:"2"|first %}
+                                            <div class="col-lg-6" id="res_event_{{ event.id }}">
+                                                <div class="service2">
+                                                    <div class="icon-holder2">
+                                                        <h3>{{ event.event_name }}</h3>
+                                                    </div>
+                                                    <h4 class="heading2">{{ event.description }}</h4>
+                                                    <div class="heading2">
+                                                        {% if event.originator.MAIN.photo %}
+
+                                                            <img class="movedownim round-borderim"
+                                                                 src="{% url 'photo' event.originator.id %}"
+                                                                 alt="{{ user.first_name }} {{ user.last_name }}"
+                                                                 height="40" width="40"/>
+                                                        {% endif %}
+                                                        <p id="res_originatorname_{{ event.id }}">{{ event.originator.username }}</p >
+                                                    </div>
+                                                    <p class="description2">
+
+                                                        {{ event.time_eating }}<br>Need {{ event.numbers }} people</p>
+                                                    <!--   <button type="button" class="btn btn-default addbtn description2" >Join</button> -->
+                                                    {% if user in event.members.all %}
+                                                        <button type="button"
+                                                                class="btn btn-default joineventbtn description2"
+                                                                id="res_joineventbtn_{{ event.id }}">Quit
+                                                        </button>
+                                                    {% else %}
+                                                        <button type="button"
+                                                                class="btn btn-default joineventbtn description2"
+                                                                id="res_joineventbtn_{{ event.id }}">Join
+                                                        </button>
+                                                    {% endif %}
+
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                        <!-- </div> -->
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio Modal 6 -->
+<div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            {#                                <!-- Project Details Go Here -->#}
+                            <h2>Coming soon</h2>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="../../static/vendor/jquery/jquery.min.js"></script>
+<script src="../../static/js/groupbuy.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../../static/js/jqBootstrapValidation.js"></script>
+<script src="../../static/js/contact_me.js"></script>
+
+<!-- Theme JavaScript -->
+<script src="../../static/js/agency.min.js"></script>
+
+<script src="../../static/js/owl.carousel.min.js"></script>
+<script src="../../static/js/owl.carousel.min.js"></script>
+<script src="../../static/js/wow.min.js"></script>
+<script src="../../static/js/typewriter.js"></script>
+<script src="../../static/js/jquery.onepagenav.js"></script>
+<script src="../../static/js/restaurant_user_comment.js"></script>
+<script src="../../static/js/menu.js"></script>
+
+</body>
+
+</html>

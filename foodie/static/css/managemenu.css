@@ -1,0 +1,11 @@
+.adddish {
+	position:relative;
+	top: 80px;	
+}
+.adddish_errors {
+	text-align:left;
+	padding-left: 15px;
+}
+.isspecial{
+	padding-left:0px;
+}

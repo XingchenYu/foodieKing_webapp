@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../static/images/burger.png">
+
+    <title>Restaurant</title>
+
+    <link href="../../static/css/bootstrap.css" rel="stylesheet">
+    <link href="../../static/css/foodie_profile.css" rel="stylesheet">
+    <link href="../../static/js/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <script src="../../static/js/ie-emulation-modes-warning.js"></script>
+    <script src="../../static/js/jquery-3.1.1.js"></script>
+
+
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top home-nav">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand glumbur-logo" href="{% url 'main' %}">FoodieKing</a>
+          
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="actives"><a href="#">Meet Surprise</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Restaurant List <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="">Little Asia</a></li>
+                <li><a href="">Rose Tea</a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="nav-controller"><i class="fa fa-user"></i></a></li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+
+<div class="container-fluid restaurant-bar">
+   	<div class="col-md-10 col-md-offset-1 ">
+	   	<div class = "col-md-3 restaurant-name">
+	   		<strong>Sichuan Gourmant</strong>
+	   	</div>
+	   	<div class="col-md-7 restaurant-info restaurant-info">
+	   		<p>Location:328 Atwood St, Oakland, Pittsburgh, PA 15213</p>
+	   	</div>
+	</div>
+</div>
+
+<div class="container-fluid restaurant-block">
+	<div class="col-md-10 col-md-offset-1">
+		   	<div class="col-md-4"><img src="../../static/images/sichuan.jpg" class="restaurant-photo .thumbnail img-responsive" alt="portrait"></div>
+		 	<div class="col-md-4"><img src="../../static/images/sichuan2.jpg" class="restaurant-photo .thumbnail img-responsive" alt="portrait"></div>
+		 	<div class="col-md-4"><img src="../../static/images/sichuan3.jpg" class="restaurant-photo .thumbnail img-responsive" alt="portrait"></div>
+			<div class="col-md-4"><img src="../../static/images/sichuan4.jpg" class="restaurant-photo .thumbnail img-responsive" alt="portrait"></div>
+			<div class="col-md-4"><img src="../../static/images/sichuan5.jpg" class="restaurant-photo .thumbnail img-responsive" alt="portrait"></div>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<br>
+	<div class="col-md-8 col-md-offset-1">
+		<hr>
+		<div class="row restaurant-activity">
+			<p>Activity. It includes the activites held by restuarant.</p>
+			<h3 class="activity-name">Group buy information, for example, $5 on hot spot!
+				<span><button type="button" class="btn btn-default btn-xs btn-right">Join</button></span>
+			</h3>
+			<h3 class="activity-name">Group buy 2
+				<span><button type="button" class="btn btn-default btn-xs btn-right">Join</button></span>
+			</h3>
+		</div>
+		<hr>
+		<div class="row restaurant-menu">
+			<p>Menu. Display the menu. Users can order here.
+				<span><button type="button" class="btn btn-default btn-xs btn-right">Order</button></p>
+			<form>
+				<div class="menu-row">
+					<h3 class="dish-type"> Type1: 
+					<span><label class="checkbox-inline restaurant-dish">
+		    		  <input type="checkbox" value="">dish1 $7
+		    		</label>
+		    		<label class="checkbox-inline restaurant-dish">
+		    		  <input type="checkbox" value="">dish2 $7
+		    		</label>
+		    		<label class="checkbox-inline restaurant-dish">
+		    		  <input type="checkbox" value="">dish3 $7
+		    		</label>
+		    		</span></h3>
+		    		<h3 class="dish-type"> Type2: 
+					<label class="checkbox-inline restaurant-dish">
+		    		  <input type="checkbox" value="">dish 4 $8
+		    			</label>
+		    		<label class="checkbox-inline restaurant-dish">
+		    		  <input type="checkbox" value="">dish5 $8
+		    		</label>
+		    		</h3>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<table class="table restaurant-time">
+		<tbody>	
+			<tr>
+				<td>M</td>
+				<td>11:00am-9:00 pm</td>
+			</tr>
+			<tr>
+				<td>T</td>
+				<td>11:00 am - 9:00 pm</td>
+			</tr>
+			<tr>
+				<td>W</td>
+				<td>11:00 am - 9:00 pm</td>
+			</tr>
+			<tr>
+				<td>Th</td>
+				<td>11:00 am - 9:00 pm</td>
+			</tr>
+			<tr>
+				<td>F</td>
+				<td>11:00 am - 10:00 pm </td>
+			</tr>
+			<tr>
+				<td>Sa</td>
+				<td>11:00 am - 10:00 pm </td>
+			</tr>
+			<tr>
+				<td>Su</td>
+				<td>12:00 am - 9:00 pm</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+</div>
+
+</body>
+
+
+
+        <div class="modal fade" id="modalShow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body text-centers">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</html>
+

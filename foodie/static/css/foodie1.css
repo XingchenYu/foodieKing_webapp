@@ -1,0 +1,309 @@
+body {
+    background: url(../../static/images/back.jpg) no-repeat center fixed;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    height: 100%;
+}
+
+.color_gray {
+    background-color: #555;
+}
+
+.color_red {
+    color: crimson;
+}
+
+.input-username {
+    width: 300px;
+}
+
+.input-pro {
+    width: 300px;
+    margin-left: 138px;
+}
+
+.input-gen {
+    display: block;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    width: 50%;
+    margin-left: 220px;
+}
+
+.float-left {
+    float: left;
+}
+
+.input-firstname {
+    width: 300px;
+    margin-left: 80px;
+}
+
+.input-lastname {
+    width: 300px;
+    margin-left: 40px;
+}
+
+.regis-submit {
+    border: #0099FF;
+    background-color: #0099FF;
+    margin-top: 20px;
+    color: white;
+}
+
+.regis-login {
+    border: #0099FF;
+    background-color: #0099FF;
+    margin-left: 190px;
+    margin-top: 20px;
+    color: white;
+}
+
+.movebottom {
+    position: relative;
+    top: 200px;
+}
+
+.movebottom2 {
+    position: relative;
+    top: 150px;
+}
+
+.movebottom3 {
+    position: relative;
+    top: 20px;
+}
+
+.movebottom4 {
+    position: relative;
+    top: 50px;
+}
+
+.nav-pills > li > a {
+    border-radius: 20px;
+    color: plum;
+}
+
+.nav-pills > li + li {
+    margin-left: 2px;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+    color: #fff;
+    background-color: gray;
+    width: 290px;
+    filter: alpha(Opacity=80);
+    -moz-opacity: 0.5;
+    opacity: 0.8;
+}
+
+.nav-justified {
+    width: 580px;
+}
+
+.set-title {
+    font-size: 22px;
+    font-family: Times;
+}
+
+.marginbottom {
+    margin-bottom: 100px;
+}
+
+.pro_box {
+    height: 500px;
+    width: 480px;
+    display: none;
+}
+
+.round-border {
+    border-radius: 10px;
+}
+
+.round-borderim {
+    border-radius: 200px;
+    border: #3399FF;
+}
+
+.pro_text {
+    font-family: "Bradley Hand";
+    font-size: 28px;
+}
+
+.pro_name {
+    font-family: "Bradley Hand";
+    font-size: 38px;
+    color: dodgerblue;
+}
+
+.marginleft {
+    margin-left: 80px;
+}
+
+.moveright {
+    position: relative;
+    left: 80px;
+}
+
+.moveright1 {
+    text-align: center;
+}
+
+.moveright2 {
+    position: relative;
+    left: 20px;
+}
+
+.moveright3 {
+    margin-left: 87px;
+}
+
+.moveright4 {
+    margin-left: 147px;
+}
+
+.moveleft {
+    position: relative;
+    right: 50px;
+}
+
+.moveleft1 {
+    position: relative;
+    right: 30px;
+}
+
+.moveleft2 {
+    position: relative;
+    right: 85px;
+}
+
+.moveleft3 {
+    position: relative;
+    right: 15px;
+}
+
+.moveleft4 {
+    position: relative;
+    right: 68px;
+}
+
+.edit-button {
+    font-size: 20px;
+    border: #3399FF;
+    background-color: #3399FF;
+    color: white;
+    width: 100px;
+    height: 30px;
+    margin-left: 125px;
+    margin-top: 30px;
+
+    cursor: pointer;
+    vertical-align: middle;
+    position: relative;
+    display: inline-block;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
+    -webkit-transition: all .15s ease;
+    -moz-transition: all .15s ease;
+    -o-transition: all .15s ease;
+    transition: all .15s ease;
+    -webkit-border-radius: 2px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 2px;
+    -moz-background-clip: padding;
+    border-radius: 4px;
+    background-clip: padding-box;
+    text-align: center;
+}
+
+.change-button {
+    font-size: 20px;
+    border: sandybrown;
+    background-color: sandybrown;
+    color: #3399FF;
+    width: 200px;
+    height: 30px;
+    margin-left: 30px;
+    margin-top: 30px;
+
+    cursor: pointer;
+    vertical-align: middle;
+    position: relative;
+    display: inline-block;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
+    -webkit-transition: all .15s ease;
+    -moz-transition: all .15s ease;
+    -o-transition: all .15s ease;
+    transition: all .15s ease;
+    -webkit-border-radius: 2px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 2px;
+    -moz-background-clip: padding;
+    border-radius: 4px;
+    background-clip: padding-box;
+    text-align: center;
+}
+
+.red-color {
+    color: yellow;
+}
+
+.y-color {
+    color: indianred;
+}
+
+.round-border2 {
+    border-radius: 50px;
+}
+
+.meal_text {
+    font-size: 20px;
+    text-align: center;
+}
+
+.meal-width {
+    width: 500px;
+}
+
+.meal_textname {
+    font-family: "Bradley Hand";
+    font-size: 20px;
+}
+
+.nav_addactivity{
+    cursor: pointer;
+    cursor: hand; 
+}
+
+.addactivity_errors {
+    text-align:left;
+    padding-left:20px;
+}
+
+.addeventform{
+  padding-left:0px;
+}

@@ -1,0 +1,13 @@
+{
+  "id": "{{groupbuy_bubble.id}}",
+  "x": "{{groupbuy_bubble.restaurant.coordinate_x}}",
+  "y": "{{groupbuy_bubble.restaurant.coordinate_y}}",
+  "restaurant_name": "{{groupbuy_bubble.restaurant.res_name}}",
+    "name": "{{groupbuy_bubble.name}}",
+  "description": "{{groupbuy_bubble.description}}",
+  "time_start": "{{groupbuy_bubble.time_start}}",
+    "time_end": "{{groupbuy_bubble.time_end}}",
+  "time_launch": "{{groupbuy_bubble.time_launch}}"
+
+
+}

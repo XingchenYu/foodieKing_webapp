@@ -1,0 +1,502 @@
+{% extends "foodieking/base_in.html" %}
+
+{% block head %}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../static/images/burger.png">
+        <title>FoodieKing</title>
+        <!-- Bootstrap core CSS -->
+        <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../static/css/foodie1.css" rel="stylesheet">
+        <link href="../../static/css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../static/css/animate.min.css" rel="stylesheet">
+        <link href="../../static/css/timeline.css" rel="stylesheet">
+        <link href="../../static/css/cover.css" rel="stylesheet">
+        <link href="../../static/css/forms.css" rel="stylesheet">
+        <link href="../../static/css/buttons.css" rel="stylesheet">
+        <link href="../../static/css/customedmarker.css" rel="stylesheet">
+        <link href="../../static/fancybox/jquery.fancybox.css" rel="stylesheet">
+
+
+        <script
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYhiHBHjwVZdJL9ipWLeITzwh8IDm7b9c">
+        </script>
+        <script src="../../static/js/jquery.1.11.1.min.js"></script>
+        <script src="../../static/js/bootstrap.min.js"></script>
+        <script src="../../static/js/custom.js"></script>
+        <script src="../../static/fancybox/jquery.fancybox.js"></script>
+        <script src="../../static/fancybox/jquery.fancybox.pack.js"></script>
+        <script src="../../static/js/foodie.js"></script>
+
+    </head>
+{% endblock %}
+
+{% block nav %}
+    <nav class="navbar navbar-inverse navbar-fixed-top home-nav">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'main' %}">FoodieKing</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if cur_user.restaurant %}
+                        <li class="actives"><a href="{% url 'manage' %}">Manage Restaurant</a></li>
+                    {% else %}
+                        <li class="actives"><a href="{% url 'create_restaurant' %}">Create Restaurant</a></li>
+                    {% endif %}
+                    <li><a data-toggle="modal" data-target="#activity_form" class="nav_addactivity">Launch a meal</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            Restaurant List <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu color_gray">
+                            {% for res in restaurants %}
+                                {% if res.user == user %}
+                                    <li><a href="{% url 'manage' %}"><span
+                                            class="color_red">{{ res.res_name }}</span></a></li>
+                                {% else %}
+                                    <li><a href="{% url 'restaurant' res.id %}"><span
+                                            class="color_red">{{ res.res_name }}</span></a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="actives"><a href="{% url 'logout' %}">Log Out</a></li>
+
+                    <li><a href="#profile" class="fancybox1" id="loggedInUser"> {{ cur_user.username }} </a>
+
+                        <div id="profile" class="pro_box" title="Profile">
+                            <div class="row">
+                                <div class="col-md-3 ">
+                                </div>
+                                <div class="col-md-8 moveleft1">
+                                    {% if cur_myuser.photo %}
+                                        <img class="marginleft round-borderim float-left"
+                                             src="{% url 'photo' cur_user.id %}"
+                                             alt="{{ cur_user.first_name }} {{ cur_user.last_name }}" height="120"
+                                             width="120"/>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+                            <p class="moveright1 movebottom3 pro_name">{{ cur_user.username }}</p>
+
+                            <div class="row">
+                                <div class="col-md-11 moveright2 movebottom3">
+                                    <p class="pro_text">First name: {{ cur_user.first_name }}</p>
+                                    <p class="pro_text">Last name:{{ cur_user.last_name }}</p>
+                                    <p class="pro_text">Email: {{ cur_user.email }}</p>
+                                    <p class="pro_text">Gender: {{ cur_myuser.get_gender_display }}<span
+                                            class="moveright">Age: {{ cur_myuser.age }}</span></p>
+                                    <p class="pro_text">Favourite food: {{ cur_myuser.fav_foods }}</p>
+
+                                </div>
+                            </div>
+                            <a class="edit-button moveleft moveright1" id="edit-btn" href="#" role="button"
+                               data-toggle="modal" data-target="#myModal">Edit</a>
+                            <a class="change-button moveleft moveright1" id="change-btn"
+                               href="{% url 'changepassword' %}" role="button">Change password</a>
+
+
+                        </div>
+                    </li>
+                    {% if user.MAIN.photo %}
+                        <li class="movetop"><a href="#" class="nav-controller"><img class="round-border2"
+                                                                                    src="{% url 'photo' user.id %}"
+                                                                                    height="30" width="30"/></a></li>
+                    {% else %}
+                        <li class="movetop"><a href="#" class="nav-controller"><img
+                                src="../../static/images/default_img.png" alt="CMU" height="25" width="25"/></a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block edit %}
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Edit your profile</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="red-color">
+                        {% for error in form_ed.non_field_errors %}
+                            <h4 class="moveright-error">{{ error }}</h4>
+                        {% endfor %}
+                    </div>
+                    <form enctype="multipart/form-data" class="form-horizontal" action="{% url 'edit' %}" method="post">
+
+                        <div class="form-group">
+                            <table class="moveright3">
+                                <tr>
+                                    <td>{{ form_ed.first_name }}</td>
+                                    <td class="red-color">{{ form_ed.first_name.errors }}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="form-group">
+                            <table class="moveright4">
+                                <tr>
+                                    <td>{{ form_ed.last_name }}</td>
+                                    <td class="red-color">{{ form_ed.last_name.errors }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-10 moveleft3">
+                                <table>
+                                    <tr>
+                                        <td>{{ form_ed.email }}</td>
+                                        <td class="red-color">{{ form_ed.email.errors }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10 moveleft3">
+                                <table>
+                                    <tr>
+                                        <td>{{ form_my.age }}</td>
+                                        <td class="red-color">{{ form_my.age.errors }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10 moveleft3">
+                                <table>
+                                    <tr>
+                                        <td>{{ form_my.gender }}</td>
+                                        <td class="red-color">{{ form_my.gender.errors }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10 moveleft2">
+                                <table>
+                                    <tr>
+                                        <td>{{ form_my.fav_foods }}</td>
+                                        <td class="red-color">{{ form_my.fav_foods.errors }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10 moveleft4">
+                                <table>
+                                    <tr>
+                                        <td>{{ form_my.photo }}</td>
+                                        <td class="red-color">{{ form_my.photo.errors }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                        {% for field in form_ed.hidden_fields %}
+                            {{ field }}
+                        {% endfor %}
+                        {% csrf_token %}
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block viewevent %}
+    <!-- View an Event -->
+    <div class="modal fade" id="curEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content meal-width">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Meal Event Information</h4>
+                </div>
+                <div class="modal-body" id="curEvent-body">
+                    <p class="meal_text"><b>Event Name: </b><span id="info_event_name" class="meal_textname"></span></p>
+                    <p class="meal_text"><b>Restaurant: </b><span id="info_restaurant_name"
+                                                                  class="meal_textname"></span></p>
+                    <p class="meal_text"><b>Originator: </b><a id="info_originator" href="#userInfo"
+                                                               class="fancybox1 meal_textname"></a></p>
+                    <p class="meal_text"><b>Description: </b><span id="info_event_des" class="meal_textname"></span></p>
+                    <p class="meal_text"><b>Meeting time: </b><span id="info_event_meet" class="meal_textname"></span>
+                    </p>
+                    <p class="meal_text"><b>Need </b><span id="info_event_number" class="meal_textname"></span> <b>people!</b>
+                    </p>
+
+
+                    <div id="userInfo" class="pro_box" title="Profile">
+                        <div class="row">
+                            <div class="col-md-3 ">
+                            </div>
+                            <div class="col-md-8 moveleft1" id="info_userphoto">
+                            </div>
+                        </div>
+                        <p id="username_info" class="moveright1 movebottom3 pro_name"></p>
+
+
+                        <div class="row">
+                            <div class="col-md-11 moveright2 movebottom3">
+                                <p id="firstname_info" class="pro_text"></p>
+                                <p id="lastname_info" class="pro_text"></p>
+                                <p id="email_info" class="pro_text"></p>
+                                <p id="gender_info" class="pro_text"></p>
+                                <p id="food_info" class="pro_text"></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="removemealbubble">Hide</button>
+                    <button type="button" class="btn btn-primary" id="joinmealbtn">Join</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View an GroupBy -->
+    <div class="modal fade" id="groubuyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content meal-width">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">View GroupBuy</h4>
+                </div>
+                <div class="modal-body" id="groubuyModal-body">
+
+
+                    <p class="meal_text"><b>Event Name: </b><span id="groupbuy_event_name" class="meal_textname"></span>
+                    </p>
+                    <p class="meal_text"><b>Restaurant: </b><span id="groupbuy_restaurant_name"
+                                                                  class="meal_textname"></span></p>
+                    <p class="meal_text"><b>Description: </b><span id="groupbuy_des" class="meal_textname"></span></p>
+                    <p class="meal_text"><b>Start Time: </b><span id="groupbuy_start" class="meal_textname"></span>
+                    </p>
+                    <p class="meal_text"><b>End Time: </b><span id="groupbuy_end" class="meal_textname"></span>
+                    </p>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="removegroupbuybubble">Hide</button>
+                    <button type="button" class="btn btn-primary" id="joingroupbuybtn">Join</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+{% block createevent %}
+<!-- Create an Event -->
+<div class="modal fade" id="activity_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Activity</h4>
+      </div>
+      <div class="modal-body"> 
+      <form class="form-horizontal" action="{% url 'addactivity' %}" method="post" id="addEventForm">    
+          <div class="form-group">
+               <div class="col-sm-10">
+                   {{ addEventForm.event_name }}
+                </div>
+          </div> 
+          <div class="form-group">
+                <div class="col-sm-10">
+                  {{ addEventForm.restaurant_name }}
+                </div>
+          </div>
+         <div class="form-group">
+                <div class="col-sm-10">
+                    {{ addEventForm.time_eating }}
+                </div>
+          </div>
+          <div class="form-group">
+                <div class="col-sm-10">
+                    {{ addEventForm.numbers }}
+                </div>
+          </div>
+          <div class="form-group">
+                <div class="col-sm-10">
+                    {{ addEventForm.description }}
+                </div>
+          </div>
+          <div class="form-group">
+                <div class="col-sm-10">
+                   <!-- <p id="addactivity_errors"></p> -->
+                   <ul id="addactivity_errors" class="addactivity_errors"></ul>
+                 </div>
+          </div>
+          {% csrf_token %}
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="add_activity">submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+{% block mainbody %}
+    <div id="map"></div>
+
+{% endblock %}
+
+{% block mission %}
+    <!-- Mission List -->
+    <div class="chat-sidebar focus">
+        <div class="list-group text-left">
+            <p class="text-center visible-xs"><a href="#" class="hide-chat btn btn-success">Hide</a></p>
+            <p class="text-center chat-title" id="list-group-head">Missions
+            </p>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="joinedEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content meal-width">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel2">Coming Meal</h4>
+                </div>
+
+
+                <div class="modal-body" id="joinedEvent-body">
+                    <p class="meal_text"><b>Event Name: </b><span id="joined_event_name" class="meal_textname"></span>
+                    </p>
+                    <p class="meal_text"><b>Restaurant: </b><span id="joined_restaurant_name"
+                                                                  class="meal_textname"></span></p>
+
+                    <p class="meal_text"><b>Originator: </b><a id="joined_orig_name" href="#userInfo_coming"
+                                                               class="fancybox1 meal_textname"></a></p>
+                    <p class="meal_text"><b>Description: </b><span id="joined_event_des" class="meal_textname"></span>
+                    </p>
+                    <p class="meal_text"><b>Meeting time: </b><span id="joined_event_meet" class="meal_textname"></span>
+                    </p>
+                    <p class="meal_text"><b>Need </b><span id="joined_event_number" class="meal_textname"></span> <b>people!</b>
+                    </p>
+
+
+                </div>
+
+                <div id="userInfo_coming" class="pro_box" title="Profile">
+                    <div class="row">
+                        <div class="col-md-3 ">
+                        </div>
+                        <div class="col-md-8 moveleft1" id="info_userphoto_c">
+                        </div>
+                    </div>
+                    <p id="username_info_c" class="moveright1 movebottom3 pro_name"></p>
+
+
+                    <div class="row">
+                        <div class="col-md-11 moveright2 movebottom3">
+                            <p id="firstname_info_c" class="pro_text"></p>
+                            <p id="lastname_info_c" class="pro_text"></p>
+                            <p id="email_info_c" class="pro_text"></p>
+                            <p id="gender_info_c" class="pro_text"></p>
+                            <p id="food_info_c" class="pro_text"></p>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="quitmealbtn">Quit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="joinedGroupbuy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content meal-width">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel2">Joined GroupBuy</h4>
+                </div>
+
+                <div class="modal-body" id="joinedGroupbuy-body">
+
+
+                    <p class="meal_text"><b>Event Name: </b><span id="joined_gb_event_name"
+                                                                  class="meal_textname"></span></p>
+                    <p class="meal_text"><b>Restaurant: </b><span id="joined_gb_restaurant_name"
+                                                                  class="meal_textname"></span></p>
+                    <p class="meal_text"><b>Description: </b><span id="joined_gb_des" class="meal_textname"></span></p>
+                    <p class="meal_text"><b>Start Time: </b><span id="joined_gb_start" class="meal_textname"></span>
+                    </p>
+                    <p class="meal_text"><b>End Time: </b><span id="joined_gb_end" class="meal_textname"></span>
+                    </p>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="quitgroupbuybtn">Quit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

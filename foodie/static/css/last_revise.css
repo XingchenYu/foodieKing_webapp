@@ -1,0 +1,42 @@
+.table_wider{
+    width:1000px;
+
+}
+
+.post_height_and_wider{
+    width: 400%;
+}
+
+.comment_wider{
+    width: 550px;
+}
+
+.button_right{
+    right:200px;
+}
+
+.post_right{
+    float:right;
+    position:relative;
+    bottom:48px;
+}
+.username_left_post{
+    float:left;
+}
+.post_content_blog{
+    font-size: 16px;
+}
+
+.move_comment_up{
+    margin-bottom: 20px;
+}
+.moveleft-text{
+    position: relative;
+    top:100px;
+}
+.float-right2{
+    float:right;
+}
+.input_wider_comment{
+    width:500px;
+}

@@ -1,0 +1,6 @@
+{"groupbuy_bubbles":[
+{% for groupbuy_bubble in groupbuy_bubbles %}
+{%spaceless%}{% include 'json/groupbuy_bubble.json' %}{%endspaceless%}
+{% if not forloop.last %}, {% endif %}
+{% endfor %}]
+}

@@ -1,0 +1,11 @@
+{"id":"{{blog.id}}",
+"content":"{{blog.content}}",
+"user":"{{blog.user}}",
+"pub_date":"{{blog.pub_date}}",
+"html":"{{blog.html|safe}}",
+  "comments":[
+{% for comment in blog.comment_set.all %}
+{%spaceless%}{% include 'json/comment.json' %}{%endspaceless%}
+{% if not forloop.last %}, {% endif %}
+{% endfor %}]
+}

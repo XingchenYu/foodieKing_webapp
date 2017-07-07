@@ -1,0 +1,9 @@
+{
+  "id": "{{item.id}}",
+  "x": "{{item.coordinate_x}}",
+  "y": "{{item.coordinate_y}}",
+  "restaurant_name": "{{item.restaurant.res_name}}",
+  "event_name":"{{item.event_name}}",
+  "number":"{{item.numbers}}",
+  "originator":"{{item.originator.username}}"
+}

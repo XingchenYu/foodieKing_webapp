@@ -1,0 +1,7 @@
+{
+  "id": "{{bubble.id}}",
+  "x": "{{bubble.coordinate_x}}",
+  "y": "{{bubble.coordinate_y}}",
+  "restaurant_name": "{{bubble.restaurant.res_name}}",
+  "originator":"{{bubble.originator.username}}"
+}

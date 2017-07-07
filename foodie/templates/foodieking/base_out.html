@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../static/images/burger.png">
+
+    <title>FoodieKing</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../static/css/bootstrap.css" rel="stylesheet">
+    <link href="../../static/css/foodie.css" rel="stylesheet">
+    <script src="../../static/js/jquery-3.1.1.js"></script>
+    <script src="../../static/js/log_page.js"></script>
+
+  </head>
+
+  <body onload="changeback()">
+    <nav class="navbar navbar-inverse navbar-fixed-top home-nav">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'main' %}">FoodieKing</a>
+        </div>
+
+      </div>
+
+    </nav>
+    {% block title %}
+    <div class="row movebottom2">
+      <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+      </div>
+      <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6">
+        <ul class="nav nav-pills nav-justified" >
+            <li class="active set-title"><a id="loginbtn" href="{% url 'home' %}">Log in</a></li>
+            <li class="active set-title"><a id="registerbtn" href="{% url 'register' %}">Register</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3">
+      </div>
+    </div>
+    {% endblock %}
+    {% block mainbody %}
+    {% endblock %}
+
+    <script src="../../static/js/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../static/js/jquery.min.js"><\/script>')</script>
+    <script src="../../static/js/bootstrap.min.js"></script>
+  </body>
+</html>

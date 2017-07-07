@@ -1,0 +1,144 @@
+body{
+    background: url(../../static/images/back3.jpg) no-repeat center fixed;
+    background-size:1350px auto;
+}
+.input-username{
+    width:300px;
+    opacity: 0.9;
+}
+.float-left{
+    float: left;
+}
+
+.regis-submit{
+    width:300px;
+    border:#0099FF ;
+    background-color:#0099FF;
+    margin-top:20px;
+    color:white;
+    opacity: 0.8;
+    font-size:16px;
+}
+
+
+.moveleft{
+    position:relative;
+    right:40px;
+}
+.moveright-title{
+    position:relative;
+    left:25px;
+}
+.moveright-text6{
+        position:relative;
+        left:220px;
+    margin-bottom: 30px;
+    }
+.moveright-text5{
+        position:relative;
+        left:290px;
+    margin-bottom: 30px;
+    }
+.moveright1{
+    position:relative;
+    left:28px;
+}
+.moveright2{
+    position:relative;
+    left:15px;
+}
+.moveright3{
+    position:relative;
+    left:60px;
+}
+.moveright4{
+    position:relative;
+    left:90px;
+}
+.moveright_forget{
+    position:relative;
+    left:20px;
+}
+.moveright_change{
+    position:relative;
+    left:10px;
+}
+.movebottom{
+    position:relative;
+    top:40px;
+}
+.movebottom2{
+    position:relative;
+    top:150px;
+}
+.movebottom3{
+    position:relative;
+    top:250px;
+}
+.movebottom4{
+    position:relative;
+    top:100px;
+}
+.move-error{
+    margin-top:170px;
+}
+
+.nav-pills > li > a {
+  border-radius: 20px;
+  color: plum;
+}
+.nav-pills > li + li {
+  margin-left: 2px;
+}
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  color: #fff;
+  background-color: gray;
+  width: 290px;
+  opacity: 0.85;
+}
+
+.nav-justified {
+  width: 580px;
+}
+.set-title{
+  font-size: 22px;
+  font-family: Times;
+}
+
+.marginbottom{
+  margin-bottom: 100px;
+}
+
+.red-color{
+    color:yellow;
+}
+.y-color{
+    color:indianred;
+}
+.forgetpassword{
+    font-size:18px;
+    position: relative;
+    top:12px;
+}
+.create-title{
+    color:yellow;
+    background-color: gray;
+    width:342px;
+    height:38px;
+    opacity: 0.85;
+    border-radius: 20px;
+}
+.red{
+    color:red;
+}
+.reset{
+    border:#0099FF ;
+    background-color:#0099FF;
+    margin-top:40px;
+    color:white;
+    width:300px;
+
+}
+.text-center {text-align:center}

@@ -1,0 +1,6 @@
+{"bubbles":[
+{% for bubble in bubbles %}
+{%spaceless%}{% include 'json/bubble.json' %}{%endspaceless%}
+{% if not forloop.last %}, {% endif %}
+{% endfor %}]
+}

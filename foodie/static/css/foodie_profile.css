@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css?family=Vollkorn");
+.menu-row{
+	margin-left:5px;
+}
+.btn-inline{
+	display: inline-block;
+}
+.restaurant-bar{
+	position:relative;
+	padding-left:0;
+	margin-top: 70px;
+}
+.restaurant-info{
+	position:relative;
+	margin-top:15px;
+	font-family:'Vollkorn',serif;
+	font-size:15px;
+}
+.restaurant-activity{
+	padding-left:15px;
+	font-family:'Vollkorn',serif;
+	font-size: 18px;
+	/*border:1px solid gray;*/
+}
+.activity-name{
+	font-family:'Vollkorn',serif;
+	font-size: 16px;
+	margin:10px;
+}
+.restaurant-name{
+	font-family:'Vollkorn',serif;
+	font-size: 20px;
+	margin-top:10px;
+	margin-left:0;
+}
+.restaurant-photo{
+	width: 200px;
+	height: 200px;
+}
+.restaurant-block{
+	margin-top:20px;
+}
+.restaurant-menu{
+	/*border:1px solid gray;*/
+	font-family:'Vollkorn',serif;
+	font-size:18px;
+	padding-left:15px;
+	margin-top:0px;
+}
+.restaurant-dish{
+	/*font-family:'Vollkorn',serif;*/
+	font-size:16px;
+	margin:10px;
+}
+.dish-type{
+	/*font-family:'Vollkorn',serif;*/
+	font-size:16px;
+	margin:5px;
+}
+.restaurant-time{
+	margin-top:20px;
+	width:70%;
+	font-family:'Vollkorn',serif;
+	font-size:14px;
+}
+/*
+.carousel-inner .active.left { left: -20%; }
+.carousel-inner .next        { left:  20%; }
+.carousel-control.left,.carousel-control.right {background-image:none;}
+*/
+.col-md-4{
+	width: 20%;
+}
+.btn-right{
+	position:absolute;
+	right:30px;
+	border-radius: 6px;
+}

@@ -1,0 +1,8 @@
+.mapcontainer{
+	width: 500px;
+	height: 500px;
+}
+#restaurantMap{
+	width:100%;
+	height:100%;
+}

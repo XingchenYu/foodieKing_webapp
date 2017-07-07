@@ -1,0 +1,7 @@
+{"max-time":"{{max_time|date:'c'}}",
+"blogs":[
+{% for blog in blogs %}
+{%spaceless%}{% include 'json/blog.json' %}{%endspaceless%}
+{% if not forloop.last %}, {% endif %}
+{% endfor %}]
+}

@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>FoodieKing</title>
+    <link rel="icon" href="../../static/images/burger.png">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Theme CSS -->
+    <link href="../../static/css/agency.min.css" rel="stylesheet">
+    <link href="../../static/css/restaurant_page_user.css" rel="stylesheet">
+    <link href="../../static/css/last_revise.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="../../static/css/manage.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/res.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/menu.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/special.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/useractivity.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/managemenu.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+<!-- Navigation -->
+<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="{% url 'main' %}">FoodieKing</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#page-top">{{ restaurant.res_name }}</a>
+                </li>
+
+                <li>
+                    <a class="page-scroll" href="#portfolio">Management</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">
+                        Restaurant List <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu  color_gray">
+                        {% for res in restaurants %}
+                            {% if res.user == user %}
+                                <li><a href="{% url 'manage' %}">{{ res.res_name }}</a></li>
+                            {% else %}
+                                <li><a href="{% url 'restaurant' res.id %}">{{ res.res_name }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li class="actives"><a href="{% url 'logout' %}">Log Out</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+
+<!-- Portfolio Grid Section -->
+<section id="portfolio" class="manage_back">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading"><span class="white_color"
+                                                  id="restaurant_name">{{ restaurant.res_name }}</span></h2>
+                <h3 class="section-subheading text-muted"><span class="bar-color">Manage your restaurant.</span></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <i class="fa fa-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="../../static/img/portfolio/menu.jpg" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    <h4>Manage menu</h4>
+                    <p class="text-muted">Change menu, add new dishes</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <i class="fa fa-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="../../static/img/portfolio/groupbuy.jpg" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    <h4>Manage group Buy</h4>
+                    <p class="text-muted">Add or cancel group buy</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <i class="fa fa-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="../../static/img/portfolio/orders.jpg" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    <h4>Manage orders</h4>
+                    <p class="text-muted">See all orders</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <i class="fa fa-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="../../static/img/portfolio/usercomment.jpg" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    <h4>Customer Comment</h4>
+                    <p class="text-muted">See comments and reply</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <i class="fa fa-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="../../static/img/portfolio/userevent.jpg" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    <h4>Customer Appointment</h4>
+                    <p class="text-muted">Manage all appointments</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 portfolio-item">
+                <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <i class="fa fa-plus fa-3x"></i>
+                        </div>
+                    </div>
+                    <img src="../../static/img/portfolio/edit.jpg" class="img-responsive" alt="">
+                </a>
+                <div class="portfolio-caption">
+                    <h4>Edit profile</h4>
+                    <p class="text-muted">Perfect your information</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <span class="copyright">Copyright &copy; FoodieKing 2016</span>
+            </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Portfolio Modals -->
+<!-- Use the modals below to showcase details about your portfolio projects! -->
+{% load listutil %}
+
+<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-body" id="modal-menu">
+                            <!-- Project Details Go Here -->
+                            <div class="col-lg-12">
+                                <h2>Menu</h2>
+                                <p class="item-intro text-muted">Add some description about your menu.</p>
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="row" id="dishList">
+                                            <!--  Use javascript to display dish photo  -->
+
+                                            {% for dish in dishes|partition:"2"|first %}
+                                                <div class="col-lg-6">
+                                                    <div class="service1" id="dishdiv_{{ dish.id }}">
+                                                        <div class="icon-holder1">
+                                                            <img src="{% url 'getdishphoto' dish.dish_name %}"
+                                                                 class="img-responsive icon" alt="portrait">
+                                                        </div>
+                                                        <h4 class="heading1"
+                                                            id="dishname_{{ dish.id }}">{{ dish.dish_name }}</h4>
+                                                        <p class="description1"
+                                                           id="dishsource_{{ dish.id }}">{{ dish.source }}</p>
+                                                        <p class="description1" id="dishprice_{{ dish.id }}">
+                                                            $ {{ dish.price }}</p>
+                                                        <button type="button"
+                                                                class="btn btn-default delbtn description1"
+                                                                id="delbtn_{{ dish.id }}">Delete
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+
+                                            {% for dish in dishes|partition:"2"|last %}
+                                                <div class="col-lg-6">
+                                                    <div class="service1" id="dishdiv_{{ dish.id }}">
+                                                        <div class="icon-holder1">
+                                                            <img src="{% url 'getdishphoto' dish.dish_name %}"
+                                                                 class="img-responsive icon" alt="portrait">
+                                                        </div>
+                                                        <h4 class="heading1"
+                                                            id="dishname_{{ dish.id }}">{{ dish.dish_name }}</h4>
+                                                        <p class="description1"
+                                                           id="dishsource_{{ dish.id }}">{{ dish.source }}</p>
+                                                        <p class="description1" id="dishprice_{{ dish.id }}">
+                                                            $ {{ dish.price }}</p>
+                                                        <button type="button"
+                                                                class="btn btn-default delbtn description1"
+                                                                id="delbtn_{{ dish.id }}">Delete
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 adddish">
+
+                                        <form enctype="multipart/form-data" class="form-horizontal" id="addDishForm">
+                                            <input type="hidden" name="resName" value="{{ restaurant.res_name }}">
+                                            <div class="col-sm-10">
+                                                <h3>Add Dish</h3>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    {{ dishform.dish_name }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    {{ dishform.price }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    {{ dishform.dish_type }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    {{ dishform.photo }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    {{ dishform.pungency }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    {{ dishform.source }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    {{ dishform.is_spe }}
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    <ul id="adddish_errors" class="adddish_errors"></ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <input type="submit" value="Add" id="addDishBtn">
+                                            </div>
+                                            {% csrf_token %}
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Portfolio Modal 2 -->
+<div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Manage Your Group Buy</h2>
+                            <p class="item-intro text-muted">You can add a group buy activity of your restaurant, see
+                                the condition of it and cancel it as well.</p><br><br><br>
+                            <p class="item-intro">Post a group buy activity to attract users to join in</p>
+
+
+                            <div class="row movebottom marginbottom movebottom2">
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="red-color movetop-text3">
+                                        {% for error in form_groupbuy.non_field_errors %}
+                                            <h4 class="moveright-text5">{{ error }}</h4>
+                                        {% endfor %}
+                                    </div>
+                                    <form enctype="multipart/form-data" class="form-horizontal"
+                                          action="{% url 'manage' %}"
+                                          method="post">
+                                        <div class="form-group">
+                                            <div class="col-sm-10">
+                                                <table>
+                                                    <tr>
+                                                        <td class="table_wider">{{ form_groupbuy.name }}</td>
+                                                        <td class="red-color">{{ form_groupbuy.name.errors }}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <div class="col-sm-10">
+                                                <table>
+                                                    <tr>
+                                                        <td class="table_wider">{{ form_groupbuy.description }}</td>
+                                                        <td class="red-color">{{ form_groupbuy.description.errors }}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-10">
+                                                <table>
+                                                    <tr>
+                                                        <td class="table_wider">{{ form_groupbuy.time_start }}</td>
+                                                        <td class="red-color">{{ form_groupbuy.time_start.errors }}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-10">
+                                                <table>
+                                                    <tr>
+                                                        <td class="table_wider">{{ form_groupbuy.time_end }}</td>
+                                                        <td class="red-color">{{ form_groupbuy.time_end.errors }}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <div class="col-sm-10">
+                                                <input class="btn btn-default btn-primary register-submit" type="submit"
+                                                       value="Submit"/>
+                                            </div>
+                                        </div>
+
+                                        {% csrf_token %}
+                                    </form>
+                                </div>
+                            </div>
+                            <br><br>
+
+                            <p class="item-intro">Below is the list of group buys of your restaurant</p>
+
+
+                            <div id="groupbuyList">
+
+                                {% for group in groups %}
+                                    <div class="col-md-8 col-lg-offset-2">
+                                        <div class="intro-table intro-table-hover" id="groupbuy_div_{{ group.id }}">
+                                            <h3 class="white heading hide-hover movedown">Name: {{ group.name }}</h3>
+                                            <div class="bottom">
+                                                <h4 class="white heading small-heading no-margin regular">
+                                                    Time: {{ group.time_start }}</h4>
+                                                <h4 class="white heading small-heading no-margin regular"><span
+                                                        class="red">{{ group.members.count }}</span> people have joined!
+                                                </h4>
+                                                <h4 class="white heading">Description: {{ group.description }}</h4>
+                                                <button type="button" id="delgroupbuybutton_{{ group.id }}"
+                                                        class="btnn btn-white-fill expand joinbtn">Cancel The GroupBuy_
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                {#                <div class="modal-body">#}
+                {#                    <div>#}
+                {#                        <label>activity name</label>#}
+                {#                        <input type="text" class="form-control" id="add_group_buy_event_name"#}
+                {#                               placeholder="activity name" aria-describedby="New Post" name="activity_name">#}
+                {#                    </div>#}
+                {#                    <div>#}
+                {#                        <label>restaurant name</label>#}
+                {#                        <input type="text" class="form-control" id="add_group_restaurant_name"#}
+                {#                               placeholder="restaurant name" aria-describedby="New Post" name="restaurant_name">#}
+                {#                    </div>#}
+                {#                </div>#}
+                {#                <div class="modal-footer">#}
+                {#                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="add_activity">submit#}
+                {#                    </button>#}
+                {#                </div>#}
+
+
+                <!--      <button type="button" class="btn btn-primary movedown" data-dismiss="modal"><i class="fa fa-times"></i>
+                         Close Project
+                     </button> -->
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Portfolio Modal 3 -->
+<div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2>Orders</h2>
+                            <p class="item-intro text-muted">Manage orders.</p>
+                            <div class="row moverightspe">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-1">
+                                        </div>
+                                        <div class="col-lg-10" id="res_orderlist">
+                                            {% for order in orders %}
+                                                <div id="order_{{ order.id }}">
+                                                    <h4 class="moveleft-order movedown_resedit">
+                                                        {% if order.user.MAIN.photo %}
+                                                            <img class="round-border movedown-order"
+                                                                 src="{% url 'photo' order.user.id %}" height="50"
+                                                                 width="50"/>
+                                                        {% endif %}
+                                                        {{ order.user.username }}'s order
+                                                    </h4>
+                                                    <table class="moveleft-order2">
+                                                        {% for dish in order.dishes.all %}
+                                                            <tr id="order-table">
+                                                                <td><b>{{ dish.dish_name }}</b></td>
+                                                                <td>{{ dish.source }}</td>
+                                                                <td>$ {{ dish.price }}</td>
+                                                            </tr>
+                                                            <tr></tr>
+                                                        {% endfor %}
+                                                    </table>
+                                                    <button type="button" id="finish_{{ order.id }}"
+                                                            class="btn_finish btn-yellow-fill expand orderbtn">Finish
+                                                    </button>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--   <button type="button" class="btn btn-primary movedown_resedit" data-dismiss="modal"><i
+                                      class="fa fa-times"></i> Close Project
+                              </button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio Modal 4 -->
+<div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Reply to the costumers</h2>
+                            <p class="item-intro text-muted">Give responses to the customers</p>
+
+                            <!-- Project Details Go Here -->
+
+                            <div class="row">
+                                <!-- left posts-->
+
+
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- post state form -->
+                                            <div class="box profile-info n-border-top">
+
+                                            </div><!-- end post state form -->
+
+                                            <!--   posts -->
+
+
+                                            <div id="postcontent">
+
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <!--
+                                                                <button type="button" class="btn btn-primary" data-dismiss="modal"><i
+                                                                        class="fa fa-times"></i> Close Project
+                                                                </button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio Modal 5 -->
+<div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2>User Activity</h2>
+                            <p class="item-intro text-muted">Activities launched by users.</p>
+
+                            <div class="row moverightspe">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            {% for event in mealevents|partition:"2"|last %}
+                                                <div class="service2">
+                                                    <div class="icon-holder2">
+                                                        <h3>{{ event.event_name }}</h3>
+                                                    </div>
+                                                    <h4 class="heading2">{{ event.description }}</h4>
+                                                    <p class="heading2">
+                                                        {% if event.originator.MAIN.photo %}
+
+                                                            <img class="movedownim round-borderim"
+                                                                 src="{% url 'photo' event.originator.id %}"
+                                                                 alt="{{ user.first_name }} {{ user.last_name }}"
+                                                                 height="40" width="40"/>
+                                                        {% endif %}
+                                                        {{ event.originator.username }}</p>
+
+                                                    <p class="description2">{{ event.time_eating }}</p>
+                                                    <p class="description2">Need {{ event.numbers }} people</p>
+
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            {% for event in mealevents|partition:"2"|first %}
+                                                <div class="service2">
+                                                    <div class="icon-holder2">
+                                                        <h3>{{ event.event_name }}</h3>
+                                                    </div>
+                                                    <h4 class="heading2">{{ event.description }}</h4>
+                                                    <p class="heading2">
+                                                        {% if event.originator.MAIN.photo %}
+
+                                                            <img class="movedownim round-borderim"
+                                                                 src="{% url 'photo' event.originator.id %}"
+                                                                 alt="{{ user.first_name }} {{ user.last_name }}"
+                                                                 height="40" width="40"/>
+                                                        {% endif %}
+                                                        {{ event.originator.username }}</p>
+
+
+                                                    <p class="description2">{{ event.time_eating }}</p>
+                                                    <p class="description2">Need {{ event.numbers }} people</p>
+
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!--
+                                                        <button type="button" class="btn btn-primary" data-dismiss="modal"><i
+                                                                class="fa fa-times"></i> Close Project
+                                                        </button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio Modal 6 -->
+<div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Edit Profile</h2>
+                            <p class="item-intro text-muted">Edit {{ restaurant.res_name }} information.</p>
+                            <div class="row">
+                                <div class="col-md-2 col-lg-2 col-xs-2 col-sm-2">
+                                </div>
+                                <div class="col-md-8 col-lg-8 col-xs-8 col-sm-8">
+
+                                    <table class="res_table">
+                                        <tr>
+                                            <td>Restaurant name:</td>
+                                            <td>{{ restaurant.res_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Restaurant type::</td>
+                                            <td>{{ restaurant.type_res }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Restaurant location:</td>
+                                            <td>{{ restaurant.location }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Latitude:</td>
+                                            <td>{{ restaurant.coordinate_x }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Longitude:</td>
+                                            <td>{{ restaurant.coordinate_y }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Phone number:</td>
+                                            <td>{{ restaurant.phone }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email:</td>
+                                            <td>{{ restaurant.email }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Home page:</td>
+                                            <td><a target="_blank"
+                                                   href="http://{{ restaurant.home_page }}">{{ restaurant.home_page }}</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Restaurant volume:</td>
+                                            <td>{{ restaurant.scale }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Number of big table:</td>
+                                            <td>{{ restaurant.big_table }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Number of medium table:</td>
+                                            <td>{{ restaurant.mid_table }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Number of small table:</td>
+                                            <td>{{ restaurant.small_table }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Description:</td>
+                                            <td>{{ restaurant.description }}</td>
+                                        </tr>
+                                        <tr></tr>
+                                        <tr>
+                                            <td>Weekday</td>
+                                            <td>{{ timetable.week_start }} - {{ timetable.week_end }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Saturday</td>
+                                            <td>{{ timetable.sat_start }} - {{ timetable.sat_end }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sunday</td>
+                                            <td>{{ timetable.sun_start }} - {{ timetable.sun_end }} </td>
+                                        </tr>
+                                    </table>
+                                    <a class="edit-button" id="edit-btn"
+                                       href="{% url 'edit_res' restaurant.id %}">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="../../static/vendor/jquery/jquery.min.js"></script>
+<script src="../../static/js/groupbuy.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="../../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+<!-- Contact Form JavaScript -->
+<script src="../../static/js/jqBootstrapValidation.js"></script>
+<script src="../../static/js/contact_me.js"></script>
+
+<!-- Theme JavaScript -->
+<script src="../../static/js/agency.min.js"></script>
+
+<script src="../../static/js/owl.carousel.min.js"></script>
+<script src="../../static/js/owl.carousel.min.js"></script>
+<script src="../../static/js/wow.min.js"></script>
+<script src="../../static/js/typewriter.js"></script>
+<script src="../../static/js/jquery.onepagenav.js"></script>
+<script src="../../static/js/restaurant_user_comment.js"></script>
+<!-- <script src="../../static/js/menu.js"></script> -->
+<script src="../../static/js/managemenu.js"></script>
+
+</body>
+
+</html>

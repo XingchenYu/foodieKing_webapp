@@ -1,0 +1,75 @@
+{% extends "foodieking/base_out.html" %}
+{% block mainbody %}
+    <div id="login">
+        <div class="row movebottom3">
+        <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+        </div>
+        <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+
+
+            <div class="row">
+{#                <div class="col-md-5">#}
+{#                </div>#}
+                <div class="col-md-11 text-center">
+                    <div class="red-color">
+                        {% for error in form_log.non_field_errors %}
+                        <h4>{{error}}</h4>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        
+             <form class="form-horizontal" action="{% url 'home' %}" method="post">
+                <div class="form-group">
+                    <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1">
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <table>
+                            <tr>
+                                <td>{{ form_log.username }}</td>
+                                <td class="red-color">{{ form_log.username.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div> 
+                
+                <div class="form-group">
+                    <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1">
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <table>
+                            <tr>
+                                <td>{{ form_log.password }}</td>
+                                <td class="red-color">{{ form_log.password.errors }}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1">
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-xs-4 col-sm-4">
+                        <input class="btn btn-default regis-submit" type="submit" value="Login"/>
+                    </div> 
+                </div>
+                 {% for field in form_log.hidden_fields %}
+                {{field}}
+                {% endfor %}
+                {% csrf_token %}
+            </form>
+
+            <div class="form-group">
+                    <div class="col-md-1 col-lg-1 col-xs-1 col-sm-1">
+                    </div>
+                    <div class="col-md-10 col-lg-10 col-xs-10 col-sm-10">
+                        <a class="forgetpassword" href="{% url 'forgetpassword' %}"><b>Have account! Forget password?</b></a>
+                    </div>
+             </div>
+
+        </div>
+        </div>
+
+    </div>
+{% endblock %}
